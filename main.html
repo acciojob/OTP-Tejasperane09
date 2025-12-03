@@ -1,16 +1,106 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8">
+  <title>OTP Verification</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    #verification_heading {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #verification_subtext {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .code-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .code {
+      width: 50px;
+      height: 60px;
+      font-size: 32px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .code:focus {
+      border-color: #4A90E2;
+      outline: none;
+      box-shadow: 0 0 5px #4A90E2;
+    }
+  </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+
+  <h1 id="verification_heading">Verify Your Account</h1>
+
+
+  <p id="verification_subtext">
+    Please enter the 6-digit code sent to your mobile number.
+  </p>
+
+  <div class="code-container">
+    <input type="text" maxlength="1" class="code">
+    <input type="text" maxlength="1" class="code">
+    <input type="text" maxlength="1" class="code">
+    <input type="text" maxlength="1" class="code">
+    <input type="text" maxlength="1" class="code">
+    <input type="text" maxlength="1" class="code">
+  </div>
+
+  <script>
+    const codes = document.querySelectorAll(".code");
+
+ 
+    codes[0].focus();
+
+    codes.forEach((box, index) => {
+
+ 
+      box.addEventListener("input", () => {
+        const value = box.value;
+
+     
+        if (value && index < codes.length - 1) {
+          codes[index + 1].focus();
+        }
+      });
+
+
+      box.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace") {
+
+          if (box.value === "") {
+        
+            if (index > 0) {
+              codes[index - 1].value = "";
+              codes[index - 1].focus();
+            }
+          } else {
+         
+            box.value = "";
+          }
+        }
+      });
+
+    });
+  </script>
 
 </body>
-
 </html>
